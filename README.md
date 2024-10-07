@@ -43,3 +43,4 @@ git push origin 브랜치명 // 기재한 브랜치명으로 소스를 기록함
 - typescript
 - react-router-dom
 - react-icons
+- firebase
