@@ -17,9 +17,9 @@ const App = () => {
           <Route path="/job" />
           <Route path="/job/:position" />
           <Route path="/result/:position" />
-          <Route path="/maincomment" element={<MainComment/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/maincomment" element={<MainComment />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Route>
       </Routes>
     </BrowserRouter>
