@@ -1,3 +1,11 @@
+@import url(font.css);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-GMARKET font-normal text-slate-950;
+  }
+}
