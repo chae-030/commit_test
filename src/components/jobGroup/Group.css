@@ -1,0 +1,73 @@
+@font-face {
+  font-family: 'GmarketSansMedium';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff')
+    format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'GmarketSansMedium'; /* 한국어 폰트 사용 */
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff; /* 배경색 */
+}
+
+.app-container {
+  max-width: 1920px;
+  max-height: 2082px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+}
+
+header {
+  margin-top: 157px;
+  margin-bottom: 42px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+p {
+  color: #64748b;
+  font-size: 16px;
+}
+
+.job-card {
+  margin: 20px auto;
+  width: 678px;
+  gap: 10px;
+  height: 194px;
+  display: flex;
+  text-align: left;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ffc801;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
+
+.job-icon {
+  width: 258px;
+  height: 170px;
+  margin-right: 20px;
+}
+
+.job-title {
+  color: #ffc801;
+  font-weight: bold;
+  font-size: 20px;
+  padding-bottom: 10px;
+}

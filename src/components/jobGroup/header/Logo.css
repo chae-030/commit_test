@@ -1,0 +1,29 @@
+.logo-container {
+  max-width: 1920px;
+  width: 1900px;
+  height: 50px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.logobar {
+  margin: 0 auto;
+  width: 157px;
+  height: 39px;
+}
+
+.logobar > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.threebar {
+  font-size: 30px;
+}

@@ -1,5 +1,11 @@
+import Group from './components/jobGroup/Group';
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <Group />
+    </div>
+  );
 };
 
 export default App;
