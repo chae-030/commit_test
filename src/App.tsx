@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/common/Layout";
 import Survey from "./pages/Survey";
 import Container from "./components/common/Container";
