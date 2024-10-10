@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React, { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./components/common/Layout";
 import Survey from "./pages/Survey";
 import Container from "./components/common/Container";
@@ -17,9 +17,9 @@ const App = () => {
           <Route path="/job" />
           <Route path="/job/:position" />
           <Route path="/result/:position" />
-          <Route path="/maincomment" element={<MainComment/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/signup" element={<Signup/>}/>
+          <Route path="/maincomment" element={<MainComment />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Route>
       </Routes>
     </BrowserRouter>
