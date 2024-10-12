@@ -78,7 +78,6 @@ const MainComment = () => {
       console.error("댓글 수정 실패:", error);
     }
   };
-
   // 댓글 삭제
   const handleDeleteComment = async (commentId: string) => {
     try {
@@ -89,7 +88,6 @@ const MainComment = () => {
       console.error("댓글 삭제 실패:", error);
     }
   };
-
   // 답글 보이기/숨기기 토글 핸들러
   const toggleRepliesVisibility = (commentId: string) => {
     setVisibleReplies((prev) => ({
