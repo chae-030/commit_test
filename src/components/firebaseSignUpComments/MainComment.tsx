@@ -95,7 +95,6 @@ const MainComment = () => {
       [commentId]: !prev[commentId], // 해당 댓글의 대댓글 보이기 상태 토글
     }));
   };
-
   return (
     <div>
       <Comments />
