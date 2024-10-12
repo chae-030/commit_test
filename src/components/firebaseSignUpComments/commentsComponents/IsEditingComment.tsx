@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 import EditingComment from "./EditingComment";
-import { Comment } from "../../pages/MainComment";
+import { Comment } from "../MainComment";
 import NoEditingComment from "./NoEditingComment";
 export type IsEditingCommentProps = {
   userId: string | undefined;
@@ -21,12 +21,10 @@ export type IsEditingCommentProps = {
   replies: Comment[];
   sectionIds: string[];
   activeSection: number;
-  parentId?: string;
 };
 const IsEditingComment = (props: IsEditingCommentProps) => {
-  const { editingCommentId, commentId } = props;
-  return editingCommentId === commentId ? (
-    //수정중일땐 EditingComment 아닐땐 NoEditingComment
+  const { commentId, editingCommentId } = props;
+  return commentId === editingCommentId ? (
     <EditingComment {...props} />
   ) : (
     <NoEditingComment {...props} />
