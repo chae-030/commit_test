@@ -3,9 +3,9 @@ import Layout from "./components/common/Layout";
 import Survey from "./pages/Survey";
 import Container from "./components/common/Container";
 import Home from "./pages/Home";
-import MainComment from "./components/firebaseSignUpComments/MainComment";
-import Login from "./components/firebaseSignUpComments/Login";
-import Signup from "./components/firebaseSignUpComments/Signup";
+import MainComment from "./pages/MainComment";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 const App = () => {
   return (

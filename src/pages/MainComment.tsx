@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { auth, db } from "./firebaseConfig"; // Firebase 설정 가져오기
+import { auth, db } from "../constants/firebaseConfig"; // Firebase 설정 가져오기
 import {
   collection,
   query,
@@ -10,9 +10,9 @@ import {
   deleteDoc,
   Timestamp,
 } from "firebase/firestore";
-import Comments from "./commentsComponents/Comments";
-import CommentInput from "./commentsComponents/CommentInput";
-import IsEditingComment from "./commentsComponents/IsEditingComment";
+import Comments from "../components/firebaseSignUpComments/Comments";
+import CommentInput from "../components/firebaseSignUpComments/CommentInput";
+import IsEditingComment from "../components/firebaseSignUpComments/IsEditingComment";
 
 export interface Comment {
   id: string;

@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 import EditingComment from "./EditingComment";
-import { Comment } from "../MainComment";
+import { Comment } from "../../pages/MainComment";
 import NoEditingComment from "./NoEditingComment";
 export type IsEditingCommentProps = {
   userId: string | undefined;

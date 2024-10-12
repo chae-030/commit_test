@@ -10,8 +10,6 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
     toggleRepliesVisibility,
     visibleReplies,
     replies,
-    sectionIds,
-    activeSection,
   } = props;
   return (
     <div>
@@ -33,7 +31,7 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
         {visibleReplies[commentId] ? "답글 숨기기" : `답글 ${replies.length}개`}
       </a>
       {visibleReplies[commentId] && (
-        <Reply sectionId={sectionIds[activeSection]} {...props} />
+        <Reply {...props} />
       )}
       <hr />
     </div>

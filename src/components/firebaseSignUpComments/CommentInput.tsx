@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, db } from "../firebaseConfig"; // Firebase 설정 가져오기
+import { auth, db } from "../../constants/firebaseConfig"; // Firebase 설정 가져오기
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 interface CommentInputProps {
   postId: string; // postId의 타입 지정
