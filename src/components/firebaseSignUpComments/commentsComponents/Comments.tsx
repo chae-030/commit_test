@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth, db } from "./firebaseConfig";
+import { auth, db } from "../firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -14,10 +14,10 @@ const Comments = () => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
 
         if (userDoc.exists()) {
-          setNickname(userDoc.data()?.nickname || "Anonymous");
+          setNickname(userDoc.data()?.nickname || "익명");
         }
       } else {
-        setNickname(null); // 로그아웃 시 닉네임 초기화
+        setNickname("익명"); // 로그아웃 시 닉네임 초기화
       }
     });
 
@@ -29,7 +29,7 @@ const Comments = () => {
     try {
       await signOut(auth); // Firebase에서 로그아웃
       console.log("로그아웃 성공");
-      navigate("/"); // 로그아웃 후 메인 페이지로 이동
+      navigate("/maincomment"); // 로그아웃 후 메인 페이지로 이동
     } catch (error) {
       console.error("로그아웃 실패:", error);
     }
@@ -43,7 +43,7 @@ const Comments = () => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
 
         if (userDoc.exists()) {
-          setNickname(userDoc.data()?.nickname || "Anonymous");
+          setNickname(userDoc.data()?.nickname || "익명");
         } else {
           console.log("사용자 문서가 존재하지 않습니다.");
         }
@@ -52,19 +52,23 @@ const Comments = () => {
 
     fetchUserNickname();
   }, []);
-
   return (
     <div>
       {auth.currentUser ? (
-        <p>
-          어서오세요, <strong>{nickname}</strong>님
+        <div>
+          <p>
+            어서오세요, <strong>{nickname}</strong>님
+          </p>
           <button onClick={handleLogout}>로그아웃</button>
-        </p>
+        </div>
       ) : (
-        <p>
+        <div>
+          <p>
+            어서오세요, <strong>{nickname}</strong>님
+          </p>
           <button onClick={() => navigate("/login")}>로그인</button>
           <button onClick={() => navigate("/signup")}>회원가입</button>
-        </p>
+        </div>
       )}
     </div>
   );

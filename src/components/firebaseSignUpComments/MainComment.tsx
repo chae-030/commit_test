@@ -10,9 +10,9 @@ import {
   deleteDoc,
   Timestamp,
 } from "firebase/firestore";
-import CommentInput from "./CommentInput";
-import Comments from "./Comments";
-import IsEditingComment from "./IsEditingComment";
+import Comments from "./commentsComponents/Comments";
+import CommentInput from "./commentsComponents/CommentInput";
+import IsEditingComment from "./commentsComponents/IsEditingComment";
 
 export interface Comment {
   id: string;
@@ -114,6 +114,7 @@ const MainComment = () => {
         {/* parentId가 없는 댓글만 표시 (일반 댓글) */}
         {comments[sectionIds[activeSection]]
           ?.filter((comment) => !comment.parentId) // 대댓글이 아닌 댓글만 표시
+          .sort((a, b) => b.createdAt.toMillis() - a.createdAt.toMillis()) // createdAt을 기준으로 최신댓글 위로오게
           .map((comment) => {
             const replies = comments[sectionIds[activeSection]].filter(
               (reply) => reply.parentId === comment.id

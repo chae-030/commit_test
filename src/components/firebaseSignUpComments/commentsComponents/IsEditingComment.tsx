@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 import EditingComment from "./EditingComment";
-import { Comment } from "./MainComment";
+import { Comment } from "../MainComment";
 import NoEditingComment from "./NoEditingComment";
 export type IsEditingCommentProps = {
   userId: string | undefined;
@@ -24,7 +24,7 @@ export type IsEditingCommentProps = {
 };
 const IsEditingComment = (props: IsEditingCommentProps) => {
   const { commentId, editingCommentId } = props;
-  return editingCommentId === commentId ? (
+  return commentId === editingCommentId ? (
     <EditingComment {...props} />
   ) : (
     <NoEditingComment {...props} />
