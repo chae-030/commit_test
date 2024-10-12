@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { auth, db } from "./firebaseConfig"; // Firebase 설정 가져오기
+import { auth, db } from "../firebaseConfig"; // Firebase 설정 가져오기
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
 
 interface CommentInputProps {
   postId: string; // postId의 타입 지정
@@ -10,26 +9,25 @@ interface CommentInputProps {
 
 const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
   const [comment, setComment] = useState<string>(""); // comment의 타입 지정
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!comment.trim()) return; // 빈 댓글은 등록되지 않도록
-    if (!auth.currentUser) {
-      alert("로그인을 해주세요.");
-      navigate("/login");
-      return;
-    }
 
-    const userId = auth.currentUser.uid;
-    // Firestore에서 사용자 정보 가져오기
-    const userDocRef = doc(db, "users", userId);
-    const userDocSnap = await getDoc(userDocRef);
-    let nickname = "Anonymous"; // 기본값
-    if (userDocSnap.exists()) {
-      const userData = userDocSnap.data();
-      nickname = userData.nickname || "Anonymous"; // Firestore에 닉네임이 있으면 사용
+    let nickname = "익명"; // 기본값으로 '익명' 설정
+    let userId = "익명"; // 로그인하지 않은 경우 '익명'로 userId 설정
+
+    // 사용자가 로그인한 경우 닉네임과 userId를 설정
+    if (auth.currentUser) {
+      userId = auth.currentUser.uid;
+      // Firestore에서 사용자 정보 가져오기
+      const userDocRef = doc(db, "users", userId);
+      const userDocSnap = await getDoc(userDocRef);
+      if (userDocSnap.exists()) {
+        const userData = userDocSnap.data();
+        nickname = userData.nickname || "익명"; // Firestore에 닉네임이 있으면 사용
+      }
     }
     try {
       const commentData: any = {
