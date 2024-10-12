@@ -1,5 +1,5 @@
 import CommentInput from "./CommentInput";
-import { Comment } from "../MainComment";
+import { Comment } from "./MainComment";
 type ReplyProps = {
   sectionId: string; // 섹션 ID
   commentId: string; // 부모 댓글 ID

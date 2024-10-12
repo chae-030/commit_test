@@ -9,6 +9,7 @@ interface CommentInputProps {
 
 const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
   const [comment, setComment] = useState<string>(""); // comment의 타입 지정
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
