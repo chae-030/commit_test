@@ -41,6 +41,9 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
       }
       // Firebase에 댓글 추가
       await addDoc(collection(db, "comments"), commentData);
+      parentId
+        ? alert("답글을 작성하였습니다.")
+        : alert("댓글을 작성하였습니다.");
       setComment(""); // 입력란 비우기
     } catch (error) {
       console.error("댓글 등록 실패:", error);
@@ -53,7 +56,7 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
         type="text"
         value={comment}
         onChange={(e) => setComment(e.target.value)}
-        placeholder="댓글을 입력하세요."
+        placeholder={parentId ? "답글을 입력하세요." : "댓글을 입력하세요."}
         required
       />
       <button type="submit">{parentId ? "답글 작성" : "댓글 작성"}</button>

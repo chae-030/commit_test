@@ -33,7 +33,6 @@ const MainComment = () => {
     {}
   ); // 각 댓글의 대댓글 보이기 상태
   const userId = auth.currentUser?.uid;
-  
 
   useEffect(() => {
     sectionIds.forEach((sectionId) => {
@@ -75,7 +74,7 @@ const MainComment = () => {
       await updateDoc(commentDocRef, {
         text: newCommentText, // 수정된 댓글 내용
       });
-      console.log("댓글 수정 성공:", commentId);
+      alert(`댓글을 수정하였습니다.`);
       setEditingCommentId(null); // 수정 완료 후 수정 상태 해제
     } catch (error) {
       console.error("댓글 수정 실패:", error);
@@ -86,7 +85,7 @@ const MainComment = () => {
     try {
       const commentDocRef = doc(db, "comments", commentId);
       await deleteDoc(commentDocRef);
-      console.log("댓글 삭제 성공:", commentId);
+      alert(`댓글을 삭제하였습니다.`);
     } catch (error) {
       console.error("댓글 삭제 실패:", error);
     }
