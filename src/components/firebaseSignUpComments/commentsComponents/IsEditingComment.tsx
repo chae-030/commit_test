@@ -23,8 +23,9 @@ export type IsEditingCommentProps = {
   activeSection: number;
 };
 const IsEditingComment = (props: IsEditingCommentProps) => {
-  const { commentId, editingCommentId } = props;
-  return commentId === editingCommentId ? (
+  const { editingCommentId, commentId } = props;
+  return editingCommentId === commentId ? ( 
+    //수정중일땐 EditingComment 아닐땐 NoEditingComment
     <EditingComment {...props} />
   ) : (
     <NoEditingComment {...props} />

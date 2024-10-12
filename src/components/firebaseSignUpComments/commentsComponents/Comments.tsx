@@ -14,10 +14,10 @@ const Comments = () => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
 
         if (userDoc.exists()) {
-          setNickname(userDoc.data()?.nickname || "익명");
+          setNickname(userDoc.data()?.nickname || "Anonymous");
         }
       } else {
-        setNickname("익명"); // 로그아웃 시 닉네임 초기화
+        setNickname(null); // 로그아웃 시 닉네임 초기화
       }
     });
 
@@ -43,7 +43,7 @@ const Comments = () => {
         const userDoc = await getDoc(doc(db, "users", user.uid));
 
         if (userDoc.exists()) {
-          setNickname(userDoc.data()?.nickname || "익명");
+          setNickname(userDoc.data()?.nickname || "Anonymous");
         } else {
           console.log("사용자 문서가 존재하지 않습니다.");
         }
@@ -52,23 +52,19 @@ const Comments = () => {
 
     fetchUserNickname();
   }, []);
+
   return (
     <div>
       {auth.currentUser ? (
-        <div>
-          <p>
-            어서오세요, <strong>{nickname}</strong>님
-          </p>
+        <p>
+          어서오세요, <strong>{nickname}</strong>님
           <button onClick={handleLogout}>로그아웃</button>
-        </div>
+        </p>
       ) : (
-        <div>
-          <p>
-            어서오세요, <strong>{nickname}</strong>님
-          </p>
+        <p>
           <button onClick={() => navigate("/login")}>로그인</button>
           <button onClick={() => navigate("/signup")}>회원가입</button>
-        </div>
+        </p>
       )}
     </div>
   );

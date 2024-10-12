@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { auth, db } from "../firebaseConfig"; // Firebase 설정 가져오기
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-
 interface CommentInputProps {
   postId: string; // postId의 타입 지정
   parentId?: string; // 대댓글을 위한 parentId 추가
@@ -14,9 +13,8 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
     e.preventDefault();
 
     if (!comment.trim()) return; // 빈 댓글은 등록되지 않도록
-
     let nickname = "익명"; // 기본값으로 '익명' 설정
-    let userId = "익명"; // 로그인하지 않은 경우 '익명'로 userId 설정
+    let userId = "anonymous"; // 로그인하지 않은 경우 'guest'로 userId 설정
 
     // 사용자가 로그인한 경우 닉네임과 userId를 설정
     if (auth.currentUser) {

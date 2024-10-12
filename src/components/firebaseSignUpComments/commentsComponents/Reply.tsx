@@ -7,7 +7,7 @@ type ReplyProps = {
   userId: string | undefined; // 현재 사용자 ID
   handleEditComment: (commentId: string, currentText: string) => Promise<void>; // 댓글 수정 핸들러
   handleDeleteComment: (commentId: string) => Promise<void>; // 댓글 삭제 핸들러
-};//이거는IsEditingCommentProps로 받아오면 왜인지 답글로 등록안돼서 그냥 이렇게함
+};//이거는IsEditingCommentProps로 받아오면 왜인지 답글이 아닌 댓글로 등록돼서 그냥 이렇게함
 const Reply = ({
   sectionId,
   commentId,
