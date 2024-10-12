@@ -33,6 +33,7 @@ const MainComment = () => {
     {}
   ); // 각 댓글의 대댓글 보이기 상태
   const userId = auth.currentUser?.uid;
+  
 
   useEffect(() => {
     sectionIds.forEach((sectionId) => {
@@ -62,6 +63,8 @@ const MainComment = () => {
 
   // 댓글 수정
   const handleEditComment = async (commentId: string, currentText: string) => {
+    console.log("Editing comment ID:", commentId); // 현재 수정하려는 댓글 ID
+    console.log("Current text:", currentText); // 현재 댓글 내용
     setEditingCommentId(commentId); // 수정할 댓글 ID 설정
     setNewCommentText(currentText); // 현재 댓글 내용을 수정창에 미리 넣기
   };

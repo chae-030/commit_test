@@ -10,7 +10,7 @@ const CommentEditDeleteButtons: React.FC<IsEditingCommentProps> = (
     handleDeleteComment,
     commentText,
   } = props;
-  return commentId === userId ? (
+  return userId === props.commentUserId || 'anonymous' === props.commentUserId ? (
     <div>
       <button onClick={() => handleEditComment(commentId, commentText)}>
         수정
