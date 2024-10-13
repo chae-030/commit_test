@@ -1,10 +1,10 @@
+import { JOBS } from '../../../constants';
 import JobCard from './Card';
-import { jobRoles } from '../../constant/data';
 
 const CardGroup = () => {
   return (
     <div className="job-grid">
-      {jobRoles.map((v) => (
+      {JOBS.map((v) => (
         <JobCard key={v.title} {...v} />
       ))}
     </div>

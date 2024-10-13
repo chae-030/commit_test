@@ -23,8 +23,8 @@ body {
 }
 
 header {
-  margin-top: 157px;
-  margin-bottom: 42px;
+  margin-top: 35px;
+  margin-bottom: 40px;
 }
 
 h1 {
@@ -40,7 +40,7 @@ p {
 }
 
 .job-card {
-  margin: 20px auto;
+  margin: 20px -110px;
   width: 678px;
   gap: 10px;
   height: 194px;
