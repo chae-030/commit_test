@@ -30,9 +30,7 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
       >
         {visibleReplies[commentId] ? "답글 숨기기" : `답글 ${replies.length}개`}
       </a>
-      {visibleReplies[commentId] && (
-        <Reply {...props} />
-      )}
+      {visibleReplies[commentId] && <Reply {...props} />}
       <hr />
     </div>
   );

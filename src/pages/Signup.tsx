@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth, db } from "../constants/firebaseConfig";
+import { auth, db } from "../api/firebaseConfig";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
