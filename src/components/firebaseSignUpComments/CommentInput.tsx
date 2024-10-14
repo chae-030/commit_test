@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { auth, db } from "../../constants/firebaseConfig"; // Firebase 설정 가져오기
+import { auth, db } from "../../api/firebaseConfig"; // Firebase 설정 가져오기
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
 interface CommentInputProps {
   postId: string; // postId의 타입 지정
@@ -51,15 +51,22 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex gap-2 text-sm w-full">
       <input
+        className="shadow text-xs rounded-lg h-8 py-2 px-5 border w-10/12"
         type="text"
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         placeholder={parentId ? "답글을 입력하세요." : "댓글을 입력하세요."}
         required
       />
-      <button type="submit">{parentId ? "답글 작성" : "댓글 작성"}</button>
+      <button
+        className="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 text-white w-3/12"
+        style={{ background: "#FFC801", border:'solid #fff 1px' }}
+        type="submit"
+      >
+        {parentId ? "답글 작성" : "댓글 작성"}
+      </button>
     </form>
   );
 };

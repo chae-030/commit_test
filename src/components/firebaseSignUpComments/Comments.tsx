@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth, db } from "../../constants/firebaseConfig";
+import { auth, db } from "../../api/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -54,16 +54,39 @@ const Comments = () => {
   }, []);
 
   return (
-    <div>
+    <div className="text-left w-full">
       {auth.currentUser ? (
         <p>
-          어서오세요, <strong>{nickname}</strong>님
-          <button onClick={handleLogout}>로그아웃</button>
+          어서오세요, <strong className="mr-1 text-blue-600">{nickname}</strong>님
+          <div className="flex gap-2">
+            <button
+              className="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 px-8 border text-white border-white"
+              style={{ background: "#FFC801" }}
+              onClick={handleLogout}
+            >
+              로그아웃
+            </button>
+          </div>
         </p>
       ) : (
         <p>
-          <button onClick={() => navigate("/login")}>로그인</button>
-          <button onClick={() => navigate("/signup")}>회원가입</button>
+          어서오세요, <strong className="mr-1 text-blue-600">방문자</strong>님
+          <div className="flex gap-2">
+            <button
+              className="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 px-8 border text-white border-white"
+              style={{ background: "#bbb", border: "solid #fff 1px" }}
+              onClick={() => navigate("/login")}
+            >
+              로그인
+            </button>
+            <button
+              className="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 px-8 border text-white border-white"
+              style={{ background: "#FFC801" }}
+              onClick={() => navigate("/signup")}
+            >
+              회원가입
+            </button>
+          </div>
         </p>
       )}
     </div>
