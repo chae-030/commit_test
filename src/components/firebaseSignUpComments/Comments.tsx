@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { auth, db } from "../../constants/firebaseConfig";
+import { auth, db } from "../../api/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
@@ -54,16 +54,34 @@ const Comments = () => {
   }, []);
 
   return (
-    <div>
+    <div className="text-left w-full">
       {auth.currentUser ? (
-        <p>
+        <p className="flex gap-2">
           어서오세요, <strong>{nickname}</strong>님
-          <button onClick={handleLogout}>로그아웃</button>
+          <button
+            className="px-4 py-0.5 text-sm rounded-lg text-white"
+            style={{ background: "#FFC801" }}
+            onClick={handleLogout}
+          >
+            로그아웃
+          </button>
         </p>
       ) : (
-        <p>
-          <button onClick={() => navigate("/login")}>로그인</button>
-          <button onClick={() => navigate("/signup")}>회원가입</button>
+        <p className="flex gap-2">
+          <button
+            className="px-4 py-0.5 text-sm rounded-lg text-white"
+            style={{ background: "#FFC801" }}
+            onClick={() => navigate("/login")}
+          >
+            로그인
+          </button>
+          <button
+            className="px-4 py-0.5 text-sm rounded-lg text-white"
+            style={{ background: "#FFC801" }}
+            onClick={() => navigate("/signup")}
+          >
+            회원가입
+          </button>
         </p>
       )}
     </div>
