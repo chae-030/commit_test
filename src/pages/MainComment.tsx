@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { auth, db } from "../api/firebaseConfig"; // Firebase 설정 가져오기
 import {
   collection,
@@ -130,7 +130,17 @@ const MainComment = () => {
       <div className="flex gap-2 flex-wrap">
         {sectionIds.map((sectionId, index) => (
           <button
-            className="text-xs border rounded-lg p-2 w-32"
+            className="text-xs rounded-lg h-8 py-2 px-4 border shadow"
+            style={{
+              background: activeSection === index ? "#FFC801" : "#fff",
+              color: activeSection === index ? "#fff" : "#000",
+              border:
+                activeSection === index ? "1px solid #fff" : "1px solid #eee",
+              textShadow:
+                activeSection === index
+                  ? "1px 1px 1px rgba(0,0,0,0.4)"
+                  : "none",
+            }}
             key={index}
             onClick={() => handleSectionChange(index)}
           >
@@ -147,44 +157,51 @@ const MainComment = () => {
       <div className="w-full">
         <img
           src={imageName(sectionIds[activeSection])}
-          className="w-full h-full object-cover"
+          className="w-full object-cover"
           alt={sectionIds[activeSection]}
         />
       </div>
       <CommentInput postId={sectionIds[activeSection]} />
-      <div className="w-full">
-        {/* parentId가 없는 댓글만 표시 (일반 댓글) */}
-        {comments[sectionIds[activeSection]]
-          ?.filter((comment) => !comment.parentId) // 대댓글이 아닌 댓글만 표시
-          .sort((a, b) => b.createdAt.toMillis() - a.createdAt.toMillis()) // createdAt을 기준으로 최신댓글 위로오게
-          .map((comment) => {
-            const replies = comments[sectionIds[activeSection]].filter(
-              (reply) => reply.parentId === comment.id
-            ); // 해당 댓글에 대한 답글들만 필터
-            return (
-              <IsEditingComment
-                key={comment.id}
-                activeSection={activeSection}
-                commentCreatedAt={comment.createdAt}
-                commentId={comment.id}
-                commentNickname={comment.nickname}
-                commentText={comment.text}
-                commentUserId={comment.userId}
-                editingCommentId={editingCommentId}
-                handleDeleteComment={handleDeleteComment}
-                handleEditComment={handleEditComment}
-                handleUpdateComment={handleUpdateComment}
-                newCommentText={newCommentText}
-                replies={replies}
-                sectionIds={sectionIds}
-                setEditingCommentId={setEditingCommentId}
-                setNewCommentText={setNewCommentText}
-                toggleRepliesVisibility={toggleRepliesVisibility}
-                userId={userId}
-                visibleReplies={visibleReplies}
-              />
-            );
-          })}
+      <div className="w-full min-h-svh">
+        {/* 현재 섹션의 댓글이 없으면 "이야기 없음" 출력 */}
+        {comments[sectionIds[activeSection]]?.length === 0 ? (
+          <p className="text-center">이야기 없음...</p>
+        ) : (
+          /* parentId가 없는 댓글만 표시 (일반 댓글) */
+          comments[sectionIds[activeSection]]
+            ?.filter((comment) => !comment.parentId) // 대댓글이 아닌 댓글만 표시
+            .sort((a, b) => b.createdAt.toMillis() - a.createdAt.toMillis()) // createdAt을 기준으로 최신 댓글을 위로 정렬
+            .map((comment, index, array) => {
+              const replies = comments[sectionIds[activeSection]].filter(
+                (reply) => reply.parentId === comment.id
+              ); // 해당 댓글에 대한 답글들만 필터
+              return (
+                <IsEditingComment
+                  key={comment.id}
+                  activeSection={activeSection}
+                  commentCreatedAt={comment.createdAt}
+                  commentId={comment.id}
+                  commentNickname={comment.nickname}
+                  commentText={comment.text}
+                  commentUserId={comment.userId}
+                  editingCommentId={editingCommentId}
+                  handleDeleteComment={handleDeleteComment}
+                  handleEditComment={handleEditComment}
+                  handleUpdateComment={handleUpdateComment}
+                  newCommentText={newCommentText}
+                  replies={replies}
+                  sectionIds={sectionIds}
+                  setEditingCommentId={setEditingCommentId}
+                  setNewCommentText={setNewCommentText}
+                  toggleRepliesVisibility={toggleRepliesVisibility}
+                  userId={userId}
+                  visibleReplies={visibleReplies}
+                  commentsLength={array.length}
+                  index={index}
+                />
+              );
+            })
+        )}
       </div>
     </div>
   );
