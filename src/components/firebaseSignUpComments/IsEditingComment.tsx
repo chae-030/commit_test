@@ -22,6 +22,9 @@ export type IsEditingCommentProps = {
   sectionIds: string[];
   activeSection: number;
   parentId?: string;
+  isReply?:string
+  commentsLength:number
+  index:number
 };
 const IsEditingComment = (props: IsEditingCommentProps) => {
   const { editingCommentId, commentId } = props;

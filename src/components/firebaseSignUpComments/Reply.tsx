@@ -12,6 +12,9 @@ const Reply = (replyProps: IsEditingCommentProps) => {
     commentCreatedAt,
     commentNickname,
     visibleReplies,
+    isReply,
+    commentsLength,
+    index,
     ...rest
   } = replyProps;
 
@@ -21,12 +24,9 @@ const Reply = (replyProps: IsEditingCommentProps) => {
   );
 
   return (
-    <div style={{ marginLeft: "20px" }}>
-      {/* 대댓글 추가 입력란 */}
-      <CommentInput postId={sectionIds[activeSection]} parentId={commentId} />
-
+    <div className="ml-7">
       {/* 대댓글 리스트 */}
-      {sortedReplies.map((reply) => (
+      {sortedReplies.map((reply, index, array) => (
         <div key={reply.id}>
           <IsEditingComment
             commentId={reply.id}
@@ -38,10 +38,18 @@ const Reply = (replyProps: IsEditingCommentProps) => {
             replies={[]} // 대댓글의 대댓글은 비워둠
             visibleReplies={{}} // 대댓글의 보이는 상태는 비워둠
             sectionIds={sectionIds}
+            isReply="yes"
+            commentsLength={array.length}
+            index={index}
             {...rest} // 중복되지 않은 나머지 props만 전달
           />
         </div>
       ))}
+      {replies.length===0&&<p className="text-sm">작성된 답글이 없습니다...</p>}
+      {/* 대댓글 추가 입력란 */}
+      <div style={{paddingTop:replies.length===0?'0px':'12px'}}>
+        <CommentInput postId={sectionIds[activeSection]} parentId={commentId} />
+      </div>
     </div>
   );
 };
