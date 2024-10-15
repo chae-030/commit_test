@@ -91,10 +91,16 @@ const Signup = () => {
   };
 
   return (
-    <div>
-      <h2>회원가입</h2>
-      <form onSubmit={handleSignup}>
+    <div className="flex flex-col items-center">
+      <h2 className="text-center text-3xl font-bold [color:_#FFC801]">
+        회원가입
+      </h2>
+      <form
+        className="flex flex-col gap-5 w-4/5 p-5 border mt-5 rounded-2xl"
+        onSubmit={handleSignup}
+      >
         <input
+          className="shadow text-xs rounded-lg h-8 py-2 px-5 border"
           type="email"
           placeholder="이메일"
           value={email}
@@ -102,6 +108,7 @@ const Signup = () => {
           required
         />
         <input
+          className="shadow text-xs rounded-lg h-8 py-2 px-5 border"
           type="text"
           placeholder="닉네임 (10글자 이내)"
           value={nickname}
@@ -115,8 +122,8 @@ const Signup = () => {
         {isNicknameAvailable === false && (
           <p style={{ color: "red" }}>사용 불가능한 닉네임입니다.</p>
         )}
-
         <input
+          className="shadow text-xs rounded-lg h-8 py-2 px-5 border"
           type="password"
           placeholder="비밀번호"
           value={password}
@@ -124,7 +131,14 @@ const Signup = () => {
           required
         />
         {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">회원가입</button>
+        <div className="flex justify-end gap-2">
+          <button
+            type="submit"
+            className="[background:_#FFC801] [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 px-8 border text-white border-white"
+          >
+            회원가입
+          </button>
+        </div>
       </form>
     </div>
   );
