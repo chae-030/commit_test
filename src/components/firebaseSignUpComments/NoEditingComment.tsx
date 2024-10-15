@@ -20,18 +20,20 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
       className="flex flex-col gap-3 pb-3"
       style={{
         borderBottom: commentsLength - 1 === index ? "none" : "1px solid #eee",
-        paddingTop: index === 0 ? 'none':"12px"
+        paddingTop: index === 0 ? "none" : "12px",
       }}
     >
       <div>
-        <p>{commentNickname}</p>
+        <p className="flex justify-between">
+          {commentNickname}
+          <CommentEditDeleteButtons {...props} />
+        </p>
         <p className="text-black text-xl">{commentText}</p>
       </div>
       <p className="text-xs">
         {commentCreatedAt &&
           new Date(commentCreatedAt.seconds * 1000).toLocaleString()}
       </p>
-      <CommentEditDeleteButtons {...props} />
       {!isReply && (
         <a
           className="text-sm text-blue-600"
