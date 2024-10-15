@@ -1,3 +1,4 @@
+import Button from "../mainComponent/Button";
 import { IsEditingCommentProps } from "./IsEditingComment";
 
 const CommentEditDeleteButtons: React.FC<IsEditingCommentProps> = (
@@ -10,12 +11,25 @@ const CommentEditDeleteButtons: React.FC<IsEditingCommentProps> = (
     handleDeleteComment,
     commentText,
   } = props;
-  return userId === props.commentUserId || 'anonymous' === props.commentUserId ? (
+  return userId === props.commentUserId ||
+    "anonymous" === props.commentUserId ? (
     <div className="flex gap-2">
-      <button className="text-xs rounded-lg h-6 px-5 py-1 border bg-gray-200" onClick={() => handleEditComment(commentId, commentText)}>
-        수정
-      </button>
-      <button className="text-xs rounded-lg h-6 px-5 py-1 border bg-gray-200" onClick={() => handleDeleteComment(commentId)}>삭제</button>
+      <Button
+        backgroundColor="bg-white"
+        text="수정"
+        textColor="bg-brand"
+        border="border"
+        onClick={() => handleEditComment(commentId, commentText)}
+        otherStyle="text-xs px-5 py-1 mt-0 shadow"
+      />
+      <Button
+        backgroundColor="bg-white"
+        text="삭제"
+        textColor="bg-brand"
+        border="border"
+        onClick={() => handleDeleteComment(commentId)}
+        otherStyle="text-xs px-5 py-1 mt-0 shadow"
+      />
     </div>
   ) : null;
 };

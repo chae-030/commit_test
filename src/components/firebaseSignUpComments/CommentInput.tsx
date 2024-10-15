@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { auth, db } from "../../api/firebaseConfig"; // Firebase 설정 가져오기
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
+import Button from "../mainComponent/Button";
 interface CommentInputProps {
   postId: string; // postId의 타입 지정
   parentId?: string; // 대댓글을 위한 parentId 추가
@@ -60,13 +61,14 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
         placeholder={parentId ? "답글을 입력하세요." : "댓글을 입력하세요."}
         required
       />
-      <button
-        className="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 text-white w-3/12"
-        style={{ background: "#FFC801", border:'solid #fff 1px' }}
+      <Button
+        otherStyle="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 w-3/12 mt-0"
+        backgroundColor="bg-brand"
+        text={parentId ? "답글 작성" : "댓글 작성"}
+        textColor="text-white"
+        border="border-white"
         type="submit"
-      >
-        {parentId ? "답글 작성" : "댓글 작성"}
-      </button>
+      />
     </form>
   );
 };
