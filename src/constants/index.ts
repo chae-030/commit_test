@@ -1,7 +1,8 @@
-import { JOB_TYPE } from "../types/constants";
+import { JOB_TYPE, QuestionType } from "../types/constants";
 
 export const JOBS: JOB_TYPE[] = [
   {
+    position: "front",
     title: "Front-end 개발자",
     description:
       "사용자가 상호작용하는 웹사이트나 앱의 UI를 개발하고, 시각적 요소와 사용자 경험을 최적화합니다.",
@@ -16,6 +17,7 @@ export const JOBS: JOB_TYPE[] = [
     imgUrl: "front.jpg",
   },
   {
+    position: "back",
     title: "Back-end 개발자",
     description:
       "사용자가 상호작용하는 웹사이트나 앱의 UI를 개발하고, 시각적 요소와 사용자 경험을 최적화합니다.",
@@ -30,6 +32,7 @@ export const JOBS: JOB_TYPE[] = [
     imgUrl: "back.jpg",
   },
   {
+    position: "uiux",
     title: "UI/UX 디자이너",
     description:
       "사용자 인터페이스를 설계하고 사용자 경험을 개선하여 더 나은 제품을 만듭니다.",
@@ -44,6 +47,7 @@ export const JOBS: JOB_TYPE[] = [
     imgUrl: "uiux.jpg",
   },
   {
+    position: "product",
     title: "프로덕트 매니저",
     description:
       "제품의 기획과 개발을 총괄하며, 비즈니스 목표와 사용자 요구를 반영한 제품 전략을 수립합니다.",
@@ -58,6 +62,7 @@ export const JOBS: JOB_TYPE[] = [
     imgUrl: "product.jpg",
   },
   {
+    position: "project",
     title: "프로젝트 매니저",
     description:
       "프로젝트의 전 과정을 관리하여 목표를 시간과 예산 내에 달성하도록 이끌고 조율합니다.",
@@ -72,6 +77,7 @@ export const JOBS: JOB_TYPE[] = [
     imgUrl: "project.jpg",
   },
   {
+    position: "qa",
     title: "QA 엔지니어",
     description:
       "소프트웨어의 결함을 찾아내고 테스트하여 품질을 보장하는 역할을 수행합니다.",
@@ -86,6 +92,7 @@ export const JOBS: JOB_TYPE[] = [
     imgUrl: "qa.jpg",
   },
   {
+    position: "devops",
     title: "데브옵스 엔지니어",
     description:
       "개발과 운영을 자동화하여 소프트웨어 배포와 시스템 운영을 효율적으로 관리합니다.",
@@ -98,5 +105,132 @@ export const JOBS: JOB_TYPE[] = [
       "CI/CD 파이프라인 구축",
     ],
     imgUrl: "devops.jpg",
+  },
+];
+
+export const questions: QuestionType[] = [
+  {
+    question: "당신은 새로운 프로젝트에서 주로 어떤 역할을 맡고 싶나요?",
+    options: [
+      {
+        answer: "사용자와 상호작용하는 부분을 직접 만들고 싶다.",
+        jobType: ["front"],
+      },
+      {
+        answer: "데이터를 처리하고 서버를 관리하는 것이 흥미롭다.",
+        jobType: ["back"],
+      },
+      {
+        answer: "사용자 경험을 개선하는 디자인을 만들고 싶다.",
+        jobType: ["uiux"],
+      },
+      {
+        answer: "제품의 기획과 전략을 수립하고 싶다.",
+        jobType: ["product"],
+      },
+      {
+        answer: "프로젝트를 전반적으로 관리하고 목표를 달성하도록 이끌고 싶다.",
+        jobType: ["project"],
+      },
+      {
+        answer: "시스템을 안정적으로 운영하고 자동화하고 싶다.",
+        jobType: ["devops"],
+      },
+      {
+        answer: "소프트웨어의 품질을 보장하고 결함을 찾아내고 싶다",
+        jobType: ["qa"],
+      },
+    ],
+  },
+  {
+    question: "문제가 발생했을 때, 당신은 어떻게 해결하나요?",
+    options: [
+      {
+        answer: "코드를 디버깅하며 문제를 해결한다.",
+        jobType: ["front", "back"],
+      },
+      {
+        answer: "사용자의 불편 사항을 찾아내고 개선한다.",
+        jobType: ["uiux"],
+      },
+      {
+        answer: "팀의 목표와 방향을 조정하고 조율한다.",
+        jobType: ["product"],
+      },
+      {
+        answer: "시스템의 안정성을 유지하고 자동화하여 문제를 해결한다.",
+        jobType: ["devops"],
+      },
+      {
+        answer: "프로젝트 진행 상태를 파악하고 문제 해결을 위한 결정을 내린다.",
+        jobType: ["project"],
+      },
+      {
+        answer: "소프트웨어를 테스트하고 버그를 찾아낸다.",
+        jobType: ["qa"],
+      },
+    ],
+  },
+  {
+    question: "어떤 도구나 기술을 사용하는 것을 선호하나요?",
+    options: [
+      {
+        answer: "디자인 툴(Figma, Adobe XD 등)",
+        jobType: ["uiux"],
+      },
+      {
+        answer: "코드와 API, 서버 관리 툴 ",
+        jobType: ["back", "devops"],
+      },
+      {
+        answer: "웹 프레임워크(React, Vue 등)",
+        jobType: ["front"],
+      },
+      {
+        answer: "데이터 분석 및 시장 조사 툴",
+        jobType: ["product"],
+      },
+      {
+        answer: "프로젝트 관리 툴(Jira, Trello 등)",
+        jobType: ["project"],
+      },
+      {
+        answer: "테스트 자동화 도구(Selenium, JUnit 등)",
+        jobType: ["qa"],
+      },
+    ],
+  },
+  {
+    question: "어떤 환경에서 더 효율적으로 일할 수 있나요?",
+    options: [
+      {
+        answer: "사용자 요구에 맞춰 UI를 빠르게 최적화하는 환경",
+        jobType: ["front"],
+      },
+      {
+        answer: "서버 및 데이터베이스 안정성에 집중하는 환경",
+        jobType: ["back"],
+      },
+      {
+        answer: "시스템의 안정성을 유지하고 자동화를 추구하는 환경",
+        jobType: ["devops"],
+      },
+      {
+        answer: "시각적 요소를 창의적으로 설계하는 환경",
+        jobType: ["uiux"],
+      },
+      {
+        answer: "팀 간의 협업을 통해 프로젝트를 주도적으로 관리하는 환경",
+        jobType: ["product"],
+      },
+      {
+        answer: "프로젝트의 전 과정을 계획하고 조율하는 환경",
+        jobType: ["project"],
+      },
+      {
+        answer: "소프트웨어의 품질을 확인하고 개선하는 환경",
+        jobType: ["qa"],
+      },
+    ],
   },
 ];
