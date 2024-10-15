@@ -15,3 +15,8 @@
     display: none;
   }
 }
+
+/* progress style */
+.transition-width {
+  transition: width 0.3s ease;
+}
