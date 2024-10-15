@@ -127,20 +127,24 @@ const MainComment = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8 items-center">
+    <div className="flex flex-col gap-8">
       <Comments />
-      <div className="flex gap-2 flex-wrap">
-        {sectionIds.map((sectionId, index) => (
-          <Button
-            text={sectionId}
-            key={index}
-            otherStyle="shadow text-xs py-2 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
-            backgroundColor={activeSection === index ? "bg-brand" : "bg-white"}
-            textColor={activeSection === index ? "text-white" : "bg-brand"}
-            border={activeSection === index ? "none" : "border"}
-            onClick={() => handleSectionChange(index)}
-          />
-        ))}
+      <div className="overflow-hidden overflow-x-scroll">
+        <div className="flex gap-2 w-max">
+          {sectionIds.map((sectionId, index) => (
+            <Button
+              text={sectionId}
+              key={index}
+              otherStyle="shadow text-xs py-2 px-2 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+              backgroundColor={
+                activeSection === index ? "bg-brand" : "bg-white"
+              }
+              textColor={activeSection === index ? "text-white" : "bg-brand"}
+              border={activeSection === index ? "none" : "border"}
+              onClick={() => handleSectionChange(index)}
+            />
+          ))}
+        </div>
       </div>
       <div className="text-center">
         <p className="mb-2">무슨 이야기를 나누고 있나요?</p>
