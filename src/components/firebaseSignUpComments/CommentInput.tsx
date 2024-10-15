@@ -62,7 +62,7 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
         required
       />
       <Button
-        otherStyle="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 w-3/12 mt-0"
+        otherStyle="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 px-0 w-3/12 mt-0"
         backgroundColor="bg-brand"
         text={parentId ? "답글 작성" : "댓글 작성"}
         textColor="text-white"
