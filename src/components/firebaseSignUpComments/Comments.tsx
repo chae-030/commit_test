@@ -55,43 +55,46 @@ const Comments = () => {
   }, []);
 
   return (
-    <div className="text-left w-full">
+    <div className="w-full">
       {auth.currentUser ? (
-        <p>
-          어서오세요, <strong className="mr-1 text-blue-600">{nickname}</strong>님
-          <div className="flex gap-2 mt-1">
-            <Button
-            text={'로그아웃'}
-            otherStyle="shadow text-xs py-2 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
-            backgroundColor={ "bg-white"}
-            textColor={"bg-brand"}
-            border={"border"}
-            onClick={handleLogout}
-          />
-          </div>
-        </p>
-      ) : (
-        <p>
-          어서오세요, <strong className="mr-1 text-blue-600">방문자</strong>님
-          <div className="flex gap-2 mt-1">
+        <div className="flex gap-2 items-center justify-between w-full">
+          <p>
+            어서오세요,{" "}
+            <strong className="mr-1 text-blue-600">{nickname}</strong>님
+          </p>
           <Button
-            text={'로그인'}
-            otherStyle="shadow text-xs py-1 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
-            backgroundColor={ "bg-white"}
+            text={"로그아웃"}
+            otherStyle="shadow text-xs py-2 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+            backgroundColor={"bg-white"}
             textColor={"bg-brand"}
             border={"border"}
             onClick={handleLogout}
           />
+        </div>
+      ) : (
+        <div className="flex gap-2 items-center justify-between w-full">
+          <p>
+            어서오세요, <strong className="mr-1 text-blue-600">방문자</strong>님
+          </p>
+          <div>
             <Button
-            text={'회원가입'}
-            otherStyle="shadow text-xs py-1 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
-            backgroundColor={ "bg-brand"}
-            textColor={"text-white"}
-            border={"border"}
-            onClick={handleLogout}
-          />
+              text={"로그인"}
+              otherStyle="shadow text-xs py-1 mt-0 mr-2 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+              backgroundColor={"bg-white"}
+              textColor={"bg-brand"}
+              border={"border"}
+              onClick={handleLogout}
+            />
+            <Button
+              text={"회원가입"}
+              otherStyle="shadow text-xs py-1 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+              backgroundColor={"bg-brand"}
+              textColor={"text-white"}
+              border={"border"}
+              onClick={handleLogout}
+            />
           </div>
-        </p>
+        </div>
       )}
     </div>
   );
