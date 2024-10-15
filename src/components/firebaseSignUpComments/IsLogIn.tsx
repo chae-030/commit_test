@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import Button from "../mainComponent/Button";
 
-const Comments = () => {
+const IsLogIn = () => {
   const [nickname, setNickname] = useState<string | null>(null);
   const navigate = useNavigate();
 
@@ -100,4 +100,4 @@ const Comments = () => {
   );
 };
 
-export default Comments;
+export default IsLogIn;
