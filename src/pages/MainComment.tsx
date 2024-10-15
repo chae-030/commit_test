@@ -20,6 +20,8 @@ import product from "../images/product.jpg";
 import project from "../images/project.jpg";
 import qa from "../images/qa.jpg";
 import devops from "../images/devops.jpg";
+import Button from "../components/mainComponent/Button";
+import Image from "../components/mainComponent/Image";
 
 export interface Comment {
   id: string;
@@ -129,23 +131,15 @@ const MainComment = () => {
       <Comments />
       <div className="flex gap-2 flex-wrap">
         {sectionIds.map((sectionId, index) => (
-          <button
-            className="text-xs rounded-lg h-8 py-2 px-4 border shadow"
-            style={{
-              background: activeSection === index ? "#FFC801" : "#fff",
-              color: activeSection === index ? "#fff" : "#000",
-              border:
-                activeSection === index ? "1px solid #fff" : "1px solid #eee",
-              textShadow:
-                activeSection === index
-                  ? "1px 1px 1px rgba(0,0,0,0.4)"
-                  : "none",
-            }}
+          <Button
+            text={sectionId}
             key={index}
+            otherStyle="shadow text-xs py-2 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+            backgroundColor={activeSection === index ? "bg-brand" : "bg-white"}
+            textColor={activeSection === index ? "text-white" : "bg-brand"}
+            border={activeSection === index ? "none" : "border"}
             onClick={() => handleSectionChange(index)}
-          >
-            {sectionId}
-          </button>
+          />
         ))}
       </div>
       <div className="text-center">
@@ -155,11 +149,7 @@ const MainComment = () => {
         </h2>
       </div>
       <div className="w-full">
-        <img
-          src={imageName(sectionIds[activeSection])}
-          className="w-full object-cover"
-          alt={sectionIds[activeSection]}
-        />
+        <Image src={imageName(sectionIds[activeSection])} />
       </div>
       <CommentInput postId={sectionIds[activeSection]} />
       <div className="w-full min-h-svh">
