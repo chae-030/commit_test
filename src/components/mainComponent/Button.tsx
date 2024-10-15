@@ -4,7 +4,7 @@ type buttonProps = {
   text: string;
   border?: string;
   otherStyle?: string;
-  type?:"submit" | "reset" | "button" | undefined
+  type?: "submit" | "reset" | "button" | undefined;
   onClick?: (() => void) | undefined;
 };
 
@@ -19,7 +19,7 @@ const Button = ({
 }: buttonProps) => {
   return (
     <button
-      className={`${backgroundColor} ${textColor} ${border} ${otherStyle} p-4 rounded-md mt-2`}
+      className={`${backgroundColor} ${textColor} ${border} p-4 rounded-md ${otherStyle}`}
       onClick={onClick}
       type={type}
     >
