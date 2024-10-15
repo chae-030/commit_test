@@ -83,7 +83,7 @@ const Comments = () => {
               backgroundColor={"bg-white"}
               textColor={"bg-brand"}
               border={"border"}
-              onClick={handleLogout}
+              onClick={()=>navigate('/login')}
             />
             <Button
               text={"회원가입"}
@@ -91,7 +91,7 @@ const Comments = () => {
               backgroundColor={"bg-brand"}
               textColor={"text-white"}
               border={"border"}
-              onClick={handleLogout}
+              onClick={()=>navigate('/signup')}
             />
           </div>
         </div>

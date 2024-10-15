@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { auth, db } from "../api/firebaseConfig"; // Firebase 설정 가져오기
 import {
   collection,
@@ -12,7 +12,6 @@ import {
 } from "firebase/firestore";
 import Comments from "../components/firebaseSignUpComments/Comments";
 import CommentInput from "../components/firebaseSignUpComments/CommentInput";
-import IsEditingComment from "../components/firebaseSignUpComments/IsEditingComment";
 import front from "../images/front.jpg";
 import back from "../images/back.jpg";
 import uiux from "../images/uiux.jpg";
@@ -20,8 +19,8 @@ import product from "../images/product.jpg";
 import project from "../images/project.jpg";
 import qa from "../images/qa.jpg";
 import devops from "../images/devops.jpg";
-import Button from "../components/mainComponent/Button";
-import Image from "../components/mainComponent/Image";
+import CommentsTopSection from "../components/firebaseSignUpComments/CommentsTopSection";
+import CommentsBottomSection from "../components/firebaseSignUpComments/CommentsBottomSection";
 
 export interface Comment {
   id: string;
@@ -129,74 +128,28 @@ const MainComment = () => {
   return (
     <div className="flex flex-col gap-8">
       <Comments />
-      <div className="overflow-hidden overflow-x-scroll">
-        <div className="flex gap-2 w-max">
-          {sectionIds.map((sectionId, index) => (
-            <Button
-              text={sectionId}
-              key={index}
-              otherStyle="shadow text-xs py-2 px-2 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
-              backgroundColor={
-                activeSection === index ? "bg-brand" : "bg-white"
-              }
-              textColor={activeSection === index ? "text-white" : "bg-brand"}
-              border={activeSection === index ? "none" : "border"}
-              onClick={() => handleSectionChange(index)}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="text-center">
-        <p className="mb-2">무슨 이야기를 나누고 있나요?</p>
-        <h2 className="text-3xl font-bold" style={{ color: "#FFC801" }}>
-          {sectionIds[activeSection]}
-        </h2>
-      </div>
-      <div className="w-full">
-        <Image src={imageName(sectionIds[activeSection])} />
-      </div>
+      <CommentsTopSection
+        activeSection={activeSection}
+        handleSectionChange={handleSectionChange}
+        imageName={imageName}
+        sectionIds={sectionIds}
+      />
       <CommentInput postId={sectionIds[activeSection]} />
-      <div className="w-full min-h-svh">
-        {/* 현재 섹션의 댓글이 없으면 "이야기 없음" 출력 */}
-        {comments[sectionIds[activeSection]]?.length === 0 ? (
-          <p className="text-center">이야기 없음...</p>
-        ) : (
-          /* parentId가 없는 댓글만 표시 (일반 댓글) */
-          comments[sectionIds[activeSection]]
-            ?.filter((comment) => !comment.parentId) // 대댓글이 아닌 댓글만 표시
-            .sort((a, b) => b.createdAt.toMillis() - a.createdAt.toMillis()) // createdAt을 기준으로 최신 댓글을 위로 정렬
-            .map((comment, index, array) => {
-              const replies = comments[sectionIds[activeSection]].filter(
-                (reply) => reply.parentId === comment.id
-              ); // 해당 댓글에 대한 답글들만 필터
-              return (
-                <IsEditingComment
-                  key={comment.id}
-                  activeSection={activeSection}
-                  commentCreatedAt={comment.createdAt}
-                  commentId={comment.id}
-                  commentNickname={comment.nickname}
-                  commentText={comment.text}
-                  commentUserId={comment.userId}
-                  editingCommentId={editingCommentId}
-                  handleDeleteComment={handleDeleteComment}
-                  handleEditComment={handleEditComment}
-                  handleUpdateComment={handleUpdateComment}
-                  newCommentText={newCommentText}
-                  replies={replies}
-                  sectionIds={sectionIds}
-                  setEditingCommentId={setEditingCommentId}
-                  setNewCommentText={setNewCommentText}
-                  toggleRepliesVisibility={toggleRepliesVisibility}
-                  userId={userId}
-                  visibleReplies={visibleReplies}
-                  commentsLength={array.length}
-                  index={index}
-                />
-              );
-            })
-        )}
-      </div>
+      <CommentsBottomSection
+        activeSection={activeSection}
+        comments={comments}
+        editingCommentId={editingCommentId}
+        handleDeleteComment={handleDeleteComment}
+        handleEditComment={handleEditComment}
+        handleUpdateComment={handleUpdateComment}
+        newCommentText={newCommentText}
+        sectionIds={sectionIds}
+        setEditingCommentId={setEditingCommentId}
+        setNewCommentText={setNewCommentText}
+        toggleRepliesVisibility={toggleRepliesVisibility}
+        userId={userId}
+        visibleReplies={visibleReplies}
+      />
     </div>
   );
 };
