@@ -10,7 +10,6 @@ import {
   deleteDoc,
   Timestamp,
 } from "firebase/firestore";
-import Comments from "../components/firebaseSignUpComments/Comments";
 import CommentInput from "../components/firebaseSignUpComments/CommentInput";
 import front from "../images/front.jpg";
 import back from "../images/back.jpg";
@@ -21,6 +20,7 @@ import qa from "../images/qa.jpg";
 import devops from "../images/devops.jpg";
 import CommentsTopSection from "../components/firebaseSignUpComments/CommentsTopSection";
 import CommentsBottomSection from "../components/firebaseSignUpComments/CommentsBottomSection";
+import IsLogIn from "../components/firebaseSignUpComments/IsLogIn";
 
 export interface Comment {
   id: string;
@@ -127,7 +127,7 @@ const MainComment = () => {
 
   return (
     <div className="flex flex-col gap-8">
-      <Comments />
+      <IsLogIn />
       <CommentsTopSection
         activeSection={activeSection}
         handleSectionChange={handleSectionChange}
