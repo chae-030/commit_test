@@ -24,7 +24,7 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
       }}
     >
       <div>
-        <p className="flex justify-between">
+        <p className="flex justify-between items-center mb-2">
           {commentNickname}
           <CommentEditDeleteButtons {...props} />
         </p>
