@@ -83,7 +83,7 @@ const Signup = () => {
 
       // 회원가입 성공 처리 (이메일 인증이 완료되면 가입 완료)
       alert("이메일 인증을 완료해주세요!");
-      navigate("/login");
+      navigate("/comments/login");
     } catch (error) {
       setError("회원가입에 실패했습니다.");
       console.error("Error signing up: ", error);
