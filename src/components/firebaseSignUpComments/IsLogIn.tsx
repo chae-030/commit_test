@@ -30,7 +30,7 @@ const IsLogIn = () => {
     try {
       await signOut(auth); // Firebase에서 로그아웃
       console.log("로그아웃 성공");
-      navigate("/maincomment"); // 로그아웃 후 메인 페이지로 이동
+      navigate("/comments"); // 로그아웃 후 메인 페이지로 이동
     } catch (error) {
       console.error("로그아웃 실패:", error);
     }
@@ -83,7 +83,7 @@ const IsLogIn = () => {
               backgroundColor={"bg-white"}
               textColor={"bg-brand"}
               border={"border"}
-              onClick={()=>navigate('/login')}
+              onClick={()=>navigate('/comments/login')}
             />
             <Button
               text={"회원가입"}
@@ -91,7 +91,7 @@ const IsLogIn = () => {
               backgroundColor={"bg-brand"}
               textColor={"text-white"}
               border={"border"}
-              onClick={()=>navigate('/signup')}
+              onClick={()=>navigate('/comments/signup')}
             />
           </div>
         </div>

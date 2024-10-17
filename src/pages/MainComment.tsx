@@ -21,6 +21,7 @@ import devops from "../images/devops.jpg";
 import CommentsTopSection from "../components/firebaseSignUpComments/CommentsTopSection";
 import CommentsBottomSection from "../components/firebaseSignUpComments/CommentsBottomSection";
 import IsLogIn from "../components/firebaseSignUpComments/IsLogIn";
+import { useNavigate, useParams } from "react-router-dom";
 
 export interface Comment {
   id: string;
@@ -48,7 +49,9 @@ const MainComment = () => {
   const [visibleReplies, setVisibleReplies] = useState<Record<string, boolean>>(
     {}
   ); // 각 댓글의 대댓글 보이기 상태
+  const { sectionId } = useParams<{ sectionId: string }>();
   const userId = auth.currentUser?.uid;
+  const navigate = useNavigate();
 
   useEffect(() => {
     sectionIds.forEach((sectionId) => {
@@ -66,20 +69,46 @@ const MainComment = () => {
           [sectionId]: sectionComments,
         }));
       });
-
       return () => unsubscribe();
     });
-  }, []);
+  }, [sectionIds]);
+
+  useEffect(() => {
+    const sectionNameMapping: { [key: string]: number } = {
+      frontend: 0,
+      backend: 1,
+      uiux: 2,
+      product: 3,
+      project: 4,
+      qa: 5,
+      devops: 6,
+    };
+    if (sectionId) {
+      const mappedSection = sectionNameMapping[sectionId];
+      mappedSection !== undefined
+        ? setActiveSection(mappedSection)
+        : setActiveSection(0);
+    }
+  }, [sectionId]);
 
   // 섹션 변경 핸들러
   const handleSectionChange = (index: number) => {
     setActiveSection(index);
+    const sectionNameMapping: { [key: string]: string } = {
+      "Front-end 개발자": "frontend",
+      "Back-end 개발자": "backend",
+      "UI/UX 디자이너": "uiux",
+      "프로덕트 매니저": "product",
+      "프로젝트 매니저": "project",
+      "QA 엔지니어": "qa",
+      "데브옵스 엔지니어": "devops",
+    };
+    const newSectionId = sectionNameMapping[sectionIds[index]];
+    navigate(`/comments/${newSectionId}`);
   };
 
   // 댓글 수정
   const handleEditComment = async (commentId: string, currentText: string) => {
-    console.log("Editing comment ID:", commentId); // 현재 수정하려는 댓글 ID
-    console.log("Current text:", currentText); // 현재 댓글 내용
     setEditingCommentId(commentId); // 수정할 댓글 ID 설정
     setNewCommentText(currentText); // 현재 댓글 내용을 수정창에 미리 넣기
   };

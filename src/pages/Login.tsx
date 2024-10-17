@@ -28,7 +28,7 @@ const Login = () => {
       }
 
       console.log("로그인 성공");
-      navigate("/maincomment");
+      navigate("/comments");
     } catch (error) {
       setError("로그인에 실패했습니다.");
       console.error("Error logging in: ", error);
@@ -68,7 +68,7 @@ const Login = () => {
           </button>
           <button
             className="[background:_#FFC801] [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs rounded-lg h-8 py-2 px-8 border text-white border-white"
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/comments/signup")}
           >
             회원가입
           </button>
