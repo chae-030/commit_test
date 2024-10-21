@@ -24,7 +24,7 @@ const EditingComment = (props: IsEditingCommentProps) => {
         <p className="text-md">{commentNickname}</p>
         <div className="flex gap-2 text-sm w-full">
           <input
-            className="shadow text-xs rounded-lg h-8 py-2 px-5 border w-8/12"
+            className="text-xs rounded-lg h-8 py-2 px-5 border w-8/12"
             value={newCommentText}
             onChange={(e) => setNewCommentText(e.target.value)}
           />
@@ -33,7 +33,7 @@ const EditingComment = (props: IsEditingCommentProps) => {
             text="완료"
             textColor="text-white"
             onClick={() => handleUpdateComment(commentId)}
-            otherStyle="[text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)] shadow text-xs py-2 px-2 w-2/12 mt-0"
+            otherStyle="text-xs py-2 px-2 w-2/12 mt-0"
           />
           <Button
             backgroundColor="bg-white"
@@ -41,7 +41,7 @@ const EditingComment = (props: IsEditingCommentProps) => {
             textColor="bg-brand"
             border="border"
             onClick={() => setEditingCommentId(null)}
-            otherStyle="shadow text-xs py-2 px-2 w-2/12 mt-0"
+            otherStyle="text-xs py-2 px-2 w-2/12 mt-0"
           />
         </div>
       </div>

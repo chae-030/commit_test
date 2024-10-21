@@ -20,7 +20,7 @@ const CommentEditDeleteButtons: React.FC<IsEditingCommentProps> = (
         textColor="bg-brand"
         border="border"
         onClick={() => handleEditComment(commentId, commentText)}
-        otherStyle="text-xs px-5 py-1 mt-0 shadow"
+        otherStyle="text-xs px-5 py-1 mt-0"
       />
       <Button
         backgroundColor="bg-white"
@@ -28,7 +28,7 @@ const CommentEditDeleteButtons: React.FC<IsEditingCommentProps> = (
         textColor="bg-brand"
         border="border"
         onClick={() => handleDeleteComment(commentId)}
-        otherStyle="text-xs px-5 py-1 mt-0 shadow"
+        otherStyle="text-xs px-5 py-1 mt-0"
       />
     </div>
   ) : null;
