@@ -24,33 +24,49 @@ const Signup = () => {
     boolean | null
   >(null);
   const navigate = useNavigate();
+  /* 
+    1. 마운트 사용
+    2. 1초 후에 닉네임을 확인하도록 디바운싱을 적용
+  */
   useEffect(() => {
-    // 닉네임 사용 가능 여부 확인
-    const checkNicknameAvailability = async () => {
-      if (nickname.length > 0 && nickname.length <= 10) {
-        const q = query(
-          collection(db, "users"),
-          where("nickname", "==", nickname)
-        );
-        const querySnapshot = await getDocs(q);
-
-        if (querySnapshot.empty) {
-          setIsNicknameAvailable(true); // 닉네임 사용 가능
-          setNicknameError("");
+    let isMounted = true; // 컴포넌트 마운트 상태 확인용 플래그
+    const debounceTimeout = setTimeout(() => {
+      // 닉네임 사용 가능 여부 확인 함수
+      const checkNicknameAvailability = async () => {
+        if (nickname.length > 0 && nickname.length <= 10) {
+          const q = query(
+            collection(db, "users"),
+            where("nickname", "==", nickname)
+          );
+          const querySnapshot = await getDocs(q);
+          if (isMounted) {
+            // 컴포넌트가 마운트된 경우에만 상태 업데이트
+            if (querySnapshot.empty) {
+              setIsNicknameAvailable(true); // 닉네임 사용 가능
+              setNicknameError("");
+            } else {
+              setIsNicknameAvailable(false); // 닉네임 사용 불가능
+              setNicknameError("이미 사용 중인 닉네임입니다.");
+            }
+          }
+        } else if (nickname.length > 10) {
+          if (isMounted) {
+            setIsNicknameAvailable(false);
+            setNicknameError("닉네임은 10글자 이내로 입력해주세요.");
+          }
         } else {
-          setIsNicknameAvailable(false); // 닉네임 사용 불가능
-          setNicknameError("이미 사용 중인 닉네임입니다.");
+          if (isMounted) {
+            setIsNicknameAvailable(null);
+            setNicknameError("");
+          }
         }
-      } else if (nickname.length > 10) {
-        setIsNicknameAvailable(false);
-        setNicknameError("닉네임은 10글자 이내로 입력해주세요.");
-      } else {
-        setIsNicknameAvailable(null);
-        setNicknameError("");
-      }
+      };
+      checkNicknameAvailability();
+    }, 1000); // 1초 디바운스 적용
+    return () => {
+      isMounted = false; // 컴포넌트 언마운트 시 플래그 해제
+      clearTimeout(debounceTimeout); // 디바운스 타이머 해제
     };
-
-    checkNicknameAvailability();
   }, [nickname]);
 
   const handleSignup = async (e: React.FormEvent) => {
