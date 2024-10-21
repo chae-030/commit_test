@@ -28,6 +28,7 @@ const Signup = () => {
     1. 마운트 사용
     2. 1초 후에 닉네임을 확인하도록 디바운싱을 적용
   */
+ 
   useEffect(() => {
     let isMounted = true; // 컴포넌트 마운트 상태 확인용 플래그
     const debounceTimeout = setTimeout(() => {
