@@ -15,7 +15,7 @@ const CommentsTopSection = ({activeSection,handleSectionChange,imageName,section
             <Button
               text={sectionId}
               key={index}
-              otherStyle="shadow text-xs py-2 px-2 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+              otherStyle="text-xs py-2 px-2"
               backgroundColor={
                 activeSection === index ? "bg-brand" : "bg-white"
               }

@@ -25,12 +25,12 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
     >
       <div>
         <div className="flex justify-between items-center mb-2">
-          {commentNickname}
+          <p>{commentNickname}</p>
           <CommentEditDeleteButtons {...props} />
         </div>
-        <p className="text-black text-xl">{commentText}</p>
+        <p className="text-black text-base">{commentText}</p>
       </div>
-      <p className="text-xs">
+      <p className="text-xs font-normal">
         {commentCreatedAt &&
           new Date(commentCreatedAt.seconds * 1000).toLocaleString()}
       </p>

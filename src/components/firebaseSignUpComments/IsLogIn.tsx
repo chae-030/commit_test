@@ -64,7 +64,7 @@ const IsLogIn = () => {
           </p>
           <Button
             text={"로그아웃"}
-            otherStyle="shadow text-xs py-2 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+            otherStyle="text-xs py-2 mt-0"
             backgroundColor={"bg-white"}
             textColor={"bg-brand"}
             border={"border"}
@@ -72,14 +72,14 @@ const IsLogIn = () => {
           />
         </div>
       ) : (
-        <div className="flex gap-2 items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full">
           <p>
             어서오세요, <strong className="mr-1 text-blue-600">방문자</strong>님
           </p>
           <div>
             <Button
               text={"로그인"}
-              otherStyle="shadow text-xs py-1 mt-0 mr-2 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+              otherStyle="text-xs py-1 mt-0 mr-2"
               backgroundColor={"bg-white"}
               textColor={"bg-brand"}
               border={"border"}
@@ -87,10 +87,9 @@ const IsLogIn = () => {
             />
             <Button
               text={"회원가입"}
-              otherStyle="shadow text-xs py-1 mt-0 [text-shadow:_1px_1px_1px_rgb(0_0_0_/_40%)]"
+              otherStyle="text-xs py-1 mt-0"
               backgroundColor={"bg-brand"}
               textColor={"text-white"}
-              border={"border"}
               onClick={()=>navigate('/comments/signup')}
             />
           </div>
