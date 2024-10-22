@@ -1,13 +1,10 @@
 import CardGroup from './card/CardGroup';
 import GroupHeader from './header/GroupHeader';
-import LogoHeader from './header/LogoHeader';
-import './Group.css';
-import Header from '../header/Header';
-import Logo from '../header/Logo';
+// import './Group.css';
 
 const Group = () => {
   return (
-    <div className="app-container">
+    <div className="justify-center max-w-lg w-full mx-auto font-GMARKET">
       <GroupHeader />
       <CardGroup />
     </div>

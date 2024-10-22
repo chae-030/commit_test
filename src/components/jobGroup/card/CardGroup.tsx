@@ -3,7 +3,7 @@ import JobCard from './Card';
 
 const CardGroup = () => {
   return (
-    <div className="job-grid">
+    <div>
       {JOBS.map((v) => (
         <JobCard key={v.title} {...v} />
       ))}
