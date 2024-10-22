@@ -48,7 +48,7 @@ const CommentsBottomSection = ({
             ); // 해당 댓글에 대한 답글들만 필터
             return (
               <IsEditingComment
-                key={comment.id}
+                key={index}
                 activeSection={activeSection}
                 commentCreatedAt={comment.createdAt}
                 commentId={comment.id}
