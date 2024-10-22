@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { auth, db } from "../api/firebaseConfig"; // Firebase 설정 가져오기
 import {
   collection,
   query,
   where,
-  onSnapshot,
   doc,
   updateDoc,
   deleteDoc,
   Timestamp,
+  getDocs
 } from "firebase/firestore";
 import CommentInput from "../components/firebaseSignUpComments/CommentInput";
 import front from "../images/front.jpg";
@@ -35,7 +35,15 @@ export interface Comment {
 const MainComment = () => {
   const [comments, setComments] = useState<Record<string, Comment[]>>({});
   const [activeSection, setActiveSection] = useState(0); // 현재 활성 섹션 인덱스
-  const sectionIds = [
+  const [editingCommentId, setEditingCommentId] = useState<string | null>(null); // 수정 중인 댓글 ID
+  const [newCommentText, setNewCommentText] = useState<string>(""); // 수정할 댓글 내용
+  const [visibleReplies, setVisibleReplies] = useState<Record<string, boolean>>(
+    {}
+  ); // 각 댓글의 대댓글 보이기 상태
+  const { sectionId } = useParams<{ sectionId: string }>();
+  const userId = auth.currentUser?.uid; //useState로 변경
+  const navigate = useNavigate();
+  const sectionIds = useMemo(() => [
     "Front-end 개발자",
     "Back-end 개발자",
     "UI/UX 디자이너",
@@ -43,35 +51,28 @@ const MainComment = () => {
     "프로젝트 매니저",
     "QA 엔지니어",
     "데브옵스 엔지니어",
-  ]; // 여러 섹션 ID
-  const [editingCommentId, setEditingCommentId] = useState<string | null>(null); // 수정 중인 댓글 ID
-  const [newCommentText, setNewCommentText] = useState<string>(""); // 수정할 댓글 내용
-  const [visibleReplies, setVisibleReplies] = useState<Record<string, boolean>>(
-    {}
-  ); // 각 댓글의 대댓글 보이기 상태
-  const { sectionId } = useParams<{ sectionId: string }>();
-  const userId = auth.currentUser?.uid;
-  const navigate = useNavigate();
-
+  ], []); // 여러 섹션 ID useMemo로 변경
+  // 모든 섹션의 댓글을 한 번에 불러와서 상태에 저장
+  /* 실시간 리스너 onSnapshot 설정 제거, 
+  이거 때문에 읽기 사용량 증가해서 
+  파이어베이스 일일한도 메모리 초과해서 연결 끊긴걸 수도.. */
+  const fetchAllComments = async () => {
+    const allComments: Record<string, Comment[]> = {};
+    for (const sectionId of sectionIds) {
+      const q = query(collection(db, "comments"), where("postId", "==", sectionId));
+      const querySnapshot = await getDocs(q);
+      allComments[sectionId] = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      })) as Comment[];
+    }
+    setComments(allComments);
+  };
+  
+  // 컴포넌트가 처음 마운트될 때만 호출
   useEffect(() => {
-    sectionIds.forEach((sectionId) => {
-      const q = query(
-        collection(db, "comments"),
-        where("postId", "==", sectionId)
-      );
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        const sectionComments: Comment[] = [];
-        querySnapshot.forEach((doc) => {
-          sectionComments.push({ id: doc.id, ...doc.data() } as Comment);
-        });
-        setComments((prevComments) => ({
-          ...prevComments,
-          [sectionId]: sectionComments,
-        }));
-      });
-      return () => unsubscribe();
-    });
-  }, [sectionIds]);
+      fetchAllComments();
+  }, []); // 빈 배열로 설정하여 마운트 시 한 번만 호출
 
   useEffect(() => {
     const sectionNameMapping: { [key: string]: number } = {
