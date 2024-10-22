@@ -42,7 +42,6 @@ p {
 .job-card {
   margin: 20px -110px;
   width: 678px;
-  gap: 10px;
   height: 194px;
   display: flex;
   text-align: left;
