@@ -1,9 +1,11 @@
 import React from "react";
-import Button from "../components/mainComponent/Button";
+import Button from "../components/common/Button";
 import Image from "../components/mainComponent/Image";
 import MainImag from "../images/main.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <div className="flex justify-center items-center min-h-screen text-center">
       <div>
@@ -15,12 +17,14 @@ const Home = () => {
             backgroundColor="bg-brand"
             textColor="text-white"
             text="테스트 시작하기"
+            onClick={() => navigate("/survey")}
           />
           <Button
             backgroundColor="bg-white"
-            textColor="bg-brand"
+            textColor="text-brand"
             text="IT 직군 알아보기"
             border="border border-brand"
+            onClick={() => navigate("/job")}
           />
         </div>
       </div>

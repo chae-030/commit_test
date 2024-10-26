@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { auth, db } from "../../api/firebaseConfig"; // Firebase 설정 가져오기
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import Button from "../mainComponent/Button";
+import Button from "../common/Button";
 interface CommentInputProps {
   postId: string; // postId의 타입 지정
   parentId?: string; // 대댓글을 위한 parentId 추가

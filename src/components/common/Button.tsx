@@ -1,6 +1,6 @@
 type buttonProps = {
   backgroundColor: "bg-white" | "bg-brand";
-  textColor: "text-white" | "bg-brand";
+  textColor: "text-white" | "bg-brand" | "text-brand";
   text: string;
   border?: string;
   otherStyle?: string;
