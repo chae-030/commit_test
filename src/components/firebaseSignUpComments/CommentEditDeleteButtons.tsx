@@ -1,4 +1,4 @@
-import Button from "../mainComponent/Button";
+import Button from "../common/Button";
 import { IsEditingCommentProps } from "./IsEditingComment";
 
 const CommentEditDeleteButtons: React.FC<IsEditingCommentProps> = (

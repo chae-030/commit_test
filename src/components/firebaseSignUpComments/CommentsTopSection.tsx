@@ -1,12 +1,17 @@
-import Button from "../mainComponent/Button"
-import Image from "../mainComponent/Image"
+import Button from "../common/Button";
+import Image from "../mainComponent/Image";
 type CommentsTopSectionProps = {
-  activeSection: number
-  sectionIds: string[]
-  handleSectionChange: (index: number) => void
-  imageName: (sectionName: string) => any
-}
-const CommentsTopSection = ({activeSection,handleSectionChange,imageName,sectionIds}:CommentsTopSectionProps) => {
+  activeSection: number;
+  sectionIds: string[];
+  handleSectionChange: (index: number) => void;
+  imageName: (sectionName: string) => any;
+};
+const CommentsTopSection = ({
+  activeSection,
+  handleSectionChange,
+  imageName,
+  sectionIds,
+}: CommentsTopSectionProps) => {
   return (
     <>
       <div className="overflow-hidden overflow-x-scroll">
