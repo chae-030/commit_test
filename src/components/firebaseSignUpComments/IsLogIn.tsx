@@ -3,7 +3,7 @@ import { auth, db } from "../../api/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
-import Button from "../mainComponent/Button";
+import Button from "../common/Button";
 
 const IsLogIn = () => {
   const [nickname, setNickname] = useState<string | null>(null);
