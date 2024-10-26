@@ -7,10 +7,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="flex justify-center max-w-lg w-11/12 mx-auto">
+    <header className="flex justify-center max-w-2xl w-11/12 mx-auto relative">
       <Logo />
       <NaviButton handleOpen={() => setIsOpen((prev) => !prev)} />
-      {isOpen && <Navigation />}
+      {isOpen && <Navigation setIsOpen={setIsOpen} />}
     </header>
   );
 };
