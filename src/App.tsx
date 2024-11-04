@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Group from "./components/jobGroup/Group";
 import Result from "./pages/Result";
+
 const App = () => {
   return (
     <BrowserRouter>
@@ -18,10 +19,7 @@ const App = () => {
           <Route path="/job" element={<Group />} />
           <Route path="/job/:position" />
           <Route path="/result/:position" element={<Result />} />
-          <Route
-            path="/comments"
-            element={<Navigate to="/comments/frontend" />}
-          />
+          <Route path="/comments" element={<Navigate to="/comments/frontend" />} />
           <Route path="/comments/:sectionId" element={<MainComment />} />
           <Route path="/comments/login" element={<Login />} />
           <Route path="/comments/signup" element={<Signup />} />
