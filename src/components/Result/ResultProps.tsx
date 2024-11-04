@@ -30,28 +30,28 @@ const ResultProps = ({
   };
 
   return (
-    <div className="flex-column justify-center min-h-screen">
-      <div className="flex justify-center">
+    <div className="flex-column justify-center min-h-screen m-16 ">
+      <div className="flex justify-center text-sm">
         <span>당신의 어울리는 IT 직군은?</span>
       </div>
       <div>
-        <h1 className="flex justify-center text-brand">{title}</h1>
+        <h1 className="flex justify-center text-brand text-2xl">{title}</h1>
         <img src={imageMap[position]} alt="" />
       </div>
       <div>
-        <div>
+        <div className="flex-column justify-center mt-12">
           <p>{description}</p>
           <p>{details}</p>
         </div>
       </div>
-      <div className="flex-column justify-center">
+      <div className="flex-column justify-center mt-16">
         <span> 💡 주요기술 :</span>
         {skills.map((skill) => (
           <p>{skill}</p>
         ))}
       </div>
 
-      <div>
+      <div className="flex justify-center items-center mt-16">
         <span style={{ color: "#FFC801" }}>
           나와 같은 직군을 고른 사람들과 이야기하러 가볼까요?
         </span>
