@@ -1,4 +1,4 @@
-type buttonProps = {
+export type buttonProps = {
   backgroundColor: "bg-white" | "bg-brand";
   textColor: "text-white" | "bg-brand" | "text-brand";
   text: string;
