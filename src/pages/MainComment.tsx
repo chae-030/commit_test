@@ -122,6 +122,7 @@ const MainComment = () => {
       });
       alert(`댓글을 수정하였습니다.`);
       setEditingCommentId(null); // 수정 완료 후 수정 상태 해제
+      window.location.reload()
     } catch (error) {
       console.error("댓글 수정 실패:", error);
     }
@@ -132,6 +133,7 @@ const MainComment = () => {
       const commentDocRef = doc(db, "comments", commentId);
       await deleteDoc(commentDocRef);
       alert(`댓글을 삭제하였습니다.`);
+      window.location.reload()
     } catch (error) {
       console.error("댓글 삭제 실패:", error);
     }
@@ -156,7 +158,7 @@ const MainComment = () => {
   };
 
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 my-8">
       <IsLogIn />
       <CommentsTopSection
         activeSection={activeSection}

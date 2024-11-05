@@ -33,7 +33,7 @@ const CommentsBottomSection = ({
   visibleReplies,
 }: CommentsBottomSectionProps) => {
   return (
-    <div className="w-full min-h-svh">
+    <div className="w-full min-h-96 overflow-y-scroll">
       {/* 현재 섹션의 댓글이 없으면 "이야기 없음" 출력 */}
       {comments[sectionIds[activeSection]]?.length === 0 ? (
         <p className="text-center">이야기 없음...</p>
