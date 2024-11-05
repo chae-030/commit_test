@@ -73,12 +73,10 @@ const Signup = () => {
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
     if (!isNicknameAvailable) {
       setError("닉네임을 확인해주세요.");
       return;
     }
-
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -86,18 +84,15 @@ const Signup = () => {
         password
       );
       const user = userCredential.user;
-
       // Firestore에 사용자 정보 저장
       await setDoc(doc(db, "users", user.uid), {
         uid: user.uid,
         email,
         nickname,
       });
-
       // 이메일 인증 발송
       await sendEmailVerification(user);
       console.log("이메일 인증 발송됨:", user);
-
       // 회원가입 성공 처리 (이메일 인증이 완료되면 가입 완료)
       alert("이메일 인증을 완료해주세요!");
       navigate("/comments/login");
@@ -108,7 +103,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-8">
       <h2 className="text-center text-3xl font-bold [color:_#FFC801]">
         회원가입
       </h2>
