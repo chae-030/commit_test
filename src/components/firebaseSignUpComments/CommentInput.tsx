@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { auth, db } from "../../api/firebaseConfig"; // Firebase 설정 가져오기
 import { addDoc, collection, doc, getDoc } from "firebase/firestore";
-import Button from "../mainComponent/Button";
+
 import { useNavigate } from "react-router-dom";
+import Button from "../common/Button";
 interface CommentInputProps {
   postId: string; // postId의 타입 지정
   parentId?: string; // 대댓글을 위한 parentId 추가
@@ -10,7 +11,7 @@ interface CommentInputProps {
 
 const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
   const [comment, setComment] = useState<string>(""); // comment의 타입 지정
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
       const userDocSnap = await getDoc(userDocRef);
       if (userDocSnap.exists()) {
         const userData = userDocSnap.data();
-        nickname = userData.nickname
+        nickname = userData.nickname;
       }
       try {
         const commentData: any = {
@@ -46,14 +47,14 @@ const CommentInput: React.FC<CommentInputProps> = ({ postId, parentId }) => {
           ? alert("답글을 작성하였습니다.")
           : alert("댓글을 작성하였습니다.");
         setComment(""); // 입력란 비우기
-        window.location.reload()
+        window.location.reload();
       } catch (error) {
         console.error("댓글 등록 실패:", error);
       }
     } else {
       alert("로그인을 해야 댓글을 작성할 수 있습니다.");
       setComment("");
-      navigate('/comments/login');
+      navigate("/comments/login");
     }
   };
 

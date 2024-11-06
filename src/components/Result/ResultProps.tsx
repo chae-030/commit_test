@@ -1,6 +1,4 @@
-import React from "react";
 import { JOB_TYPE, Position } from "../../types/constants";
-import ResultButton from "./ResultButton";
 import frontImg from "../../images/front.jpg";
 import backImg from "../../images/back.jpg";
 import uiuxImg from "../../images/uiux.jpg";
@@ -8,6 +6,8 @@ import productImg from "../../images/product.jpg";
 import projectImg from "../../images/project.jpg";
 import qaImg from "../../images/qa.jpg";
 import devopsImg from "../../images/devops.jpg";
+import { useNavigate } from "react-router-dom";
+import Button from "../common/Button";
 
 const ResultProps = ({
   position,
@@ -15,9 +15,8 @@ const ResultProps = ({
   description,
   details,
   skills,
-  imgUrl,
-}: JOB_TYPE) => {
-  console.log(description);
+}: Omit<JOB_TYPE, "imgUrl">) => {
+  const navigate = useNavigate();
 
   const imageMap: Record<Position, string> = {
     front: frontImg,
@@ -57,17 +56,19 @@ const ResultProps = ({
         </span>
       </div>
 
-      <div className="flex grid gap-2">
-        <ResultButton
+      <div className="grid gap-2">
+        <Button
           backgroundColor="bg-brand"
           textColor="text-white"
           text="이야기 하러 가기"
+          onClick={() => navigate(`/comments/${position}`)}
         />
-        <ResultButton
+        <Button
           backgroundColor="bg-white"
-          textColor="bg-brand"
-          text="다시 하러 가기"
+          textColor="text-brand"
+          text="테스트 다시하기"
           border="border border-brand"
+          onClick={() => navigate("/survey")}
         />
       </div>
     </div>

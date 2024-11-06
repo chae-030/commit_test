@@ -6,6 +6,7 @@ import productImg from "../../../images/product.jpg";
 import projectImg from "../../../images/project.jpg";
 import qaImg from "../../../images/qa.jpg";
 import devopsImg from "../../../images/devops.jpg";
+import { useNavigate } from "react-router-dom";
 
 export type JobCardProps = {
   title: string;
@@ -25,9 +26,11 @@ const imageMap: Record<Position, string> = {
 };
 
 const JobCard = ({ title, description, position }: JobCardProps) => {
+  const navigate = useNavigate();
   return (
     <div
-      className="flex w-full text-left items-center p-5 mb-5 gap-3 justify-between
+      onClick={() => navigate(`/result/${position}`)}
+      className="flex w-full text-left items-center p-5 mb-5 gap-3 justify-between cursor-pointer
     bg-white border border-brand rounded-xl shadow-jobShadow transition-width"
     >
       <div className="flex-shrink overflow-hidden w-5/12 h-44">
