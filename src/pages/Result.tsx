@@ -10,6 +10,7 @@ const Result = () => {
   return (
     <>
       <ResultProps
+        key={position}
         position={position}
         title={title}
         description={description}

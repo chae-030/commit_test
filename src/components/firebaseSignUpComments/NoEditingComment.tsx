@@ -35,9 +35,8 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
           new Date(commentCreatedAt.seconds * 1000).toLocaleString()}
       </p>
       {!isReply && (
-        <a
+        <button
           className="text-sm text-blue-600"
-          href="#"
           onClick={(e) => {
             e.preventDefault(); // 기본 링크 동작 방지
             toggleRepliesVisibility(commentId); // 답글 보이기 상태 토글
@@ -46,7 +45,7 @@ const NoEditingComment = (props: IsEditingCommentProps) => {
           {visibleReplies[commentId]
             ? "답글 숨기기"
             : `답글 ${replies.length}개`}
-        </a>
+        </button>
       )}
       {visibleReplies[commentId] && <Reply {...props} />}
     </div>

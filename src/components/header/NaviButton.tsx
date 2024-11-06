@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 
 type NaviButtonProps = { handleOpen: () => void };
