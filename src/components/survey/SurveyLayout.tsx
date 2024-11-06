@@ -3,12 +3,21 @@ import SurveyTitle from "./SurveyTitle";
 import SurveyButton from "./SurveyButton";
 import Progress from "./Progress";
 import { useSurvey } from "../../hooks/useSurvey";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const SurveyLayout = () => {
   const { step, handleBack, handleAnswerSelect, result } = useSurvey();
   const { options } = questions[step];
 
-  if (result) return <div>{result}</div>;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (result) {
+      navigate(`/result/${result}`);
+    }
+  }, [result, navigate]);
+
   return (
     <div>
       <Progress
