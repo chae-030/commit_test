@@ -45,8 +45,8 @@ const ResultProps = ({
       </div>
       <div className="flex-column justify-center mt-16">
         <span> 💡 주요기술 :</span>
-        {skills.map((skill) => (
-          <p>{skill}</p>
+        {skills.map((skill, index) => (
+          <p key={index}>{skill}</p>
         ))}
       </div>
 
