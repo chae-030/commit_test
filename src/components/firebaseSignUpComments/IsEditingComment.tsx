@@ -1,6 +1,6 @@
 import { Timestamp } from "firebase/firestore";
 import EditingComment from "./EditingComment";
-import { Comment } from "../../pages/MainComment";
+import { CommentInterface } from "../../pages/MainComment";
 import NoEditingComment from "./NoEditingComment";
 export type IsEditingCommentProps = {
   userId: string | undefined;
@@ -18,7 +18,7 @@ export type IsEditingCommentProps = {
   toggleRepliesVisibility: (commentId: string) => void;
   newCommentText: string;
   visibleReplies: Record<string, boolean>;
-  replies: Comment[];
+  replies: CommentInterface[];
   sectionIds: string[];
   activeSection: number;
   parentId?: string;

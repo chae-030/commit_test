@@ -1,8 +1,8 @@
-import { Comment } from "../../pages/MainComment";
+import { CommentInterface } from "../../pages/MainComment";
 import IsEditingComment from "./IsEditingComment";
 
 type CommentsBottomSectionProps = {
-  comments: Record<string, Comment[]>;
+  comments: Record<string, CommentInterface[]>;
   sectionIds: string[];
   activeSection: number;
   editingCommentId: string | null;
