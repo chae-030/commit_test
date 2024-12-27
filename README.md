@@ -37,7 +37,7 @@ git push origin 브랜치명 // 기재한 브랜치명으로 소스를 기록함
 - chore: 빌드 업무 수정, 패키지 매니저 후
 - design: css 등 디자인 관련
 
-## 설치라이브러리
+## 라이브러리
 <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
 <img src="https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" />
 <img src="https://img.shields.io/badge/firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=white">
